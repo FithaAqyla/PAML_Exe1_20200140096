@@ -1,4 +1,5 @@
 import 'package:exesatuu/home_page.dart';
+import 'package:exesatuu/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -12,7 +13,7 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   final _formf = GlobalKey<FormState>();
-  final name = TextEditingController();
+  final namee = TextEditingController();
   final email = TextEditingController();
   final pwd = TextEditingController();
   final repwd = TextEditingController();
@@ -69,7 +70,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         children: [
                           TextFormField(
                             keyboardType: TextInputType.name,
-                            controller: name,
+                            controller: namee,
                             decoration: InputDecoration(
                               prefixIcon: Icon(Icons.person_outline_outlined),
                               labelText: 'Name',
@@ -115,7 +116,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           TextFormField(
                             controller: pwd,
                             obscureText: _togglePass,
-                            keyboardType: TextInputType.emailAddress,
+                            keyboardType: TextInputType.visiblePassword,
                             decoration: InputDecoration(
                               prefixIcon: Icon(Icons.lock_outlined),
                               labelText: 'Password',
@@ -150,7 +151,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           TextFormField(
                             controller: repwd,
                             obscureText: _togglePass2,
-                            keyboardType: TextInputType.emailAddress,
+                            keyboardType: TextInputType.visiblePassword,
                             decoration: InputDecoration(
                               prefixIcon: Icon(Icons.lock_outlined),
                               labelText: 'Re-Password',
@@ -170,12 +171,11 @@ class _RegisterPageState extends State<RegisterPage> {
                             validator: (value) {
                               if (value == null || value.isEmpty) {
                                 return 'Password cannot be empty';
-                              } else if (pwd.text.length < 6) {
+                              } else if (value.length < 6) {
                                 "Password must be at least 6 characters";
                               } else if (value != pwd.text) {
                                 return "Password does not match";
                               }
-                              return null;
                             },
                             // onSaved: (value) {
                             //   name = value;
@@ -195,7 +195,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => Homepage(
-                                          name: name.text,
+                                          name: namee.text,
                                         )));
                           }
                         },
@@ -224,7 +224,10 @@ class _RegisterPageState extends State<RegisterPage> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => LoginPage()));
+              },
               child: Icon(
                 Icons.arrow_back,
                 color: Colors.white,
