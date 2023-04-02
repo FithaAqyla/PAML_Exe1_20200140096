@@ -131,6 +131,8 @@ class _LoginPageState extends State<LoginPage> {
                         height: 50,
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(50)),
                             backgroundColor: Color.fromARGB(255, 255, 176, 58),
                           ),
                           onPressed: () {
@@ -143,6 +145,7 @@ class _LoginPageState extends State<LoginPage> {
                           },
                           child: Text(
                             'Login'.toUpperCase(),
+                            style: TextStyle(color: Colors.white),
                           ),
                         ),
                       ),
