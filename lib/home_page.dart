@@ -18,39 +18,41 @@ class Homepage extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 10.0, vertical: 20)),
+                  Padding(padding: EdgeInsets.symmetric(vertical: 30)),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      RichText(
-                        text: TextSpan(
-                            text: 'Hello, ',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            children: [
-                              TextSpan(
-                                  text: '$name',
-                                  style: TextStyle(
-                                      color: Colors.blue,
-                                      fontWeight: FontWeight.bold))
-                            ]),
+                      Container(
+                        margin: EdgeInsets.only(left: 10),
+                        child: RichText(
+                          text: TextSpan(
+                              text: 'Hello, ',
+                              style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              children: [
+                                TextSpan(
+                                    text: '$name',
+                                    style: const TextStyle(
+                                        color: Colors.blue,
+                                        fontWeight: FontWeight.bold))
+                              ]),
+                        ),
                       ),
+
                       Container(
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             const Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 160)),
+                                padding: EdgeInsets.symmetric(horizontal: 120)),
                             CircleAvatar(
                               backgroundImage:
                                   AssetImage("assets/image/profile.jpg"),
-                              radius: 20,
+                              radius: 30,
                             )
                           ],
                         ),
