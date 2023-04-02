@@ -77,7 +77,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             ),
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return 'Nama Tidak Boleh Kosong';
+                                return 'Name cannot be empty';
                               }
                               return null;
                             },
@@ -227,7 +227,10 @@ class _RegisterPageState extends State<RegisterPage> {
             padding: const EdgeInsets.all(8.0),
             child: ElevatedButton(
               onPressed: () {},
-              child: Icon(Icons.arrow_back),
+              child: Icon(
+                Icons.arrow_back,
+                color: Colors.white,
+              ),
               style: ElevatedButton.styleFrom(
                   backgroundColor: Color.fromARGB(255, 255, 175, 55),
                   shape: RoundedRectangleBorder(
