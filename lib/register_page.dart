@@ -17,6 +17,7 @@ class _RegisterPageState extends State<RegisterPage> {
   final pwd = TextEditingController();
   final repwd = TextEditingController();
   bool _togglePass = true;
+  bool _togglePass2 = true;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -63,8 +64,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       const SizedBox(
                         height: 40.0,
                       ),
-                      Form(
-                          child: Column(
+                      Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           TextFormField(
@@ -78,7 +78,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             ),
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return 'Name cannot be empty';
+                                return 'Enter your name!';
                               }
                               return null;
                             },
@@ -96,7 +96,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               border: OutlineInputBorder(),
                             ),
                             validator: (value) {
-                              if (!value!.isEmpty) {
+                              if (value == null || value.isEmpty) {
                                 return 'Email cannot be Empty';
                               }
                               bool eValid = RegExp('@').hasMatch(value);
@@ -149,7 +149,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           ),
                           TextFormField(
                             controller: repwd,
-                            obscureText: _togglePass,
+                            obscureText: _togglePass2,
                             keyboardType: TextInputType.emailAddress,
                             decoration: InputDecoration(
                               prefixIcon: Icon(Icons.lock_outlined),
@@ -159,10 +159,10 @@ class _RegisterPageState extends State<RegisterPage> {
                               suffix: InkWell(
                                 onTap: () {
                                   setState(() {
-                                    _togglePass = !_togglePass;
+                                    _togglePass2 = !_togglePass2;
                                   });
                                 },
-                                child: Icon(_togglePass
+                                child: Icon(_togglePass2
                                     ? Icons.visibility
                                     : Icons.visibility_off),
                               ),
@@ -182,17 +182,14 @@ class _RegisterPageState extends State<RegisterPage> {
                             // },
                           ),
                         ],
-                      )),
+                      ),
                       const SizedBox(
-                        height: 20.0,
+                        height: 40.0,
                       ),
                       InkWell(
                         onTap: () {
                           if (_formf.currentState!.validate()) {
-                            name.clear();
-                            email.clear();
-                            pwd.clear();
-                            repwd.clear();
+                            //
 
                             Navigator.push(
                                 context,
@@ -210,7 +207,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           ),
                           child: Center(
                               child: Text(
-                            "register",
+                            "Register",
                             style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
