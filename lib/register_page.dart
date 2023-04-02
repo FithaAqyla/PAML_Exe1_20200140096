@@ -102,6 +102,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               if (!eValid) {
                                 return "Enter a valid email";
                               }
+                              return null;
                             },
                             // onSaved: (value) {
                             //   email = value;
@@ -136,6 +137,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               } else if (pwd.text.length < 6) {
                                 "Password must be at least 6 characters";
                               }
+                              return null;
                             },
                             // onSaved: (value) {
                             //   name = value;
@@ -172,6 +174,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               } else if (value != pwd.text) {
                                 return "Password does not match";
                               }
+                              return null;
                             },
                             // onSaved: (value) {
                             //   name = value;
@@ -202,7 +205,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           height: 60,
                           decoration: BoxDecoration(
                             color: Color.fromARGB(255, 255, 175, 55),
-                            borderRadius: BorderRadius.circular(20),
+                            borderRadius: BorderRadius.circular(50),
                           ),
                           child: Center(
                               child: Text(
