@@ -11,7 +11,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final _formf = GlobalKey<FormState>();
-  final name = TextEditingController();
+  final namee = TextEditingController();
   final email = TextEditingController();
   final pwd = TextEditingController();
   bool _togglePass = true;
@@ -76,54 +76,67 @@ class _LoginPageState extends State<LoginPage> {
                       SizedBox(
                         height: 45.0,
                       ),
-                      Form(
-                          child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           TextFormField(
-                            decoration: const InputDecoration(
-                                prefixIcon: Icon(Icons.person_outline_outlined),
-                                labelText: 'Name',
-                                hintText: 'Enter your name',
-                                border: OutlineInputBorder()),
+                            keyboardType: TextInputType.name,
+                            controller: namee,
+                            decoration: InputDecoration(
+                              prefixIcon: Icon(Icons.person_outline_outlined),
+                              labelText: 'Name',
+                              hintText: 'Enter your name',
+                              border: OutlineInputBorder(),
+                            ),
                             validator: (value) {
-                              if (value!.isEmpty) {
-                                return "Name cannot be empty";
+                              if (value == null || value.isEmpty) {
+                                return 'Enter your name!';
                               }
+                              return null;
                             },
+                          ),
+                          const SizedBox(
+                            height: 10.0,
+                          ),
+                          const SizedBox(
+                            height: 10.0,
+                          ),
+                          TextFormField(
+                            controller: pwd,
+                            obscureText: _togglePass,
+                            keyboardType: TextInputType.visiblePassword,
+                            decoration: InputDecoration(
+                              prefixIcon: Icon(Icons.lock_outlined),
+                              labelText: 'Password',
+                              hintText: 'Enter your password',
+                              border: OutlineInputBorder(),
+                              suffix: InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    _togglePass = !_togglePass;
+                                  });
+                                },
+                                child: Icon(_togglePass
+                                    ? Icons.visibility
+                                    : Icons.visibility_off),
+                              ),
+                            ),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Password cannot be empty';
+                              } else if (pwd.text.length < 6) {
+                                "Password must be at least 6 characters";
+                              }
+                              return null;
+                            },
+                            // onSaved: (value) {
+                            //   name = value;
+                            // },
+                          ),
+                          const SizedBox(
+                            height: 10.0,
                           ),
                         ],
-                      )),
-                      const SizedBox(
-                        height: 10.0,
-                      ),
-                      TextFormField(
-                        controller: pwd,
-                        obscureText: _togglePass,
-                        keyboardType: TextInputType.emailAddress,
-                        decoration: InputDecoration(
-                          prefixIcon: Icon(Icons.lock),
-                          labelText: 'Password',
-                          hintText: 'Password',
-                          border: OutlineInputBorder(),
-                          suffix: InkWell(
-                            onTap: () {
-                              setState(() {
-                                _togglePass = !_togglePass;
-                              });
-                            },
-                            child: Icon(_togglePass
-                                ? Icons.visibility
-                                : Icons.visibility_off),
-                          ),
-                        ),
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return "Password cannot be empty!";
-                          } else if (pwd.text.length < 6) {
-                            return "Password must be at least 6 characters";
-                          }
-                        },
                       ),
                       const SizedBox(height: 10),
                       SizedBox(
@@ -136,12 +149,16 @@ class _LoginPageState extends State<LoginPage> {
                             backgroundColor: Color.fromARGB(255, 255, 176, 58),
                           ),
                           onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Homepage(
-                                          name: name.text,
-                                        )));
+                            if (_formf.currentState!.validate()) {
+                              //
+
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Homepage(
+                                            name: namee.text,
+                                          )));
+                            }
                           },
                           child: Text(
                             'Login'.toUpperCase(),
