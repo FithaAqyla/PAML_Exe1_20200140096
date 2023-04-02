@@ -9,8 +9,9 @@ class StartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        resizeToAvoidBottomInset: false,
-        body: Center(
+      resizeToAvoidBottomInset: false,
+      body: Container(
+        child: Center(
             child: Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Form(
@@ -72,19 +73,39 @@ class StartPage extends StatelessWidget {
                       SizedBox(
                         height: 100,
                       ),
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => LoginPage()));
+                        },
+                        child: Icon(
+                          Icons.navigate_next,
+                          color: Colors.white,
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          
+                            primary: Color.fromARGB(255, 255, 175, 55),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(50.0))),
+                      )
                     ],
                   ),
-                ))),
-                
-        floatingActionButton: FloatingActionButton(
-          
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => LoginPage()));
-            },
-            child: Icon(
-              Icons.navigate_next,
-              color: Colors.white,
-            )));
+                ))
+
+            //     floatingActionButton: FloatingActionButton(
+
+            // onPressed: () {
+            //   Navigator.push(context,
+            //       MaterialPageRoute(builder: (context) => LoginPage()));
+            // },
+            // child: Icon(
+            //   Icons.navigate_next,
+            //   color: Colors.white,
+            // ))
+            ),
+      ),
+    );
   }
 }
