@@ -110,7 +110,7 @@ class Homepage extends StatelessWidget {
                     ],
                   ),
                   SizedBox(
-                    height: 20.0,
+                    height: 10.0,
                   ),
                   SingleChildScrollView(
                     child: Column(
